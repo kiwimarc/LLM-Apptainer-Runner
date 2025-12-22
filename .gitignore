@@ -1,0 +1,8 @@
+# Ignore models directory
+models/
+
+# Ignore all JSON files
+*.json
+
+# Ignore Apptainer/Singularity image files
+*.sif
