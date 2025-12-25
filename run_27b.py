@@ -180,6 +180,46 @@ INSTRUCTIONS:
 {Path(args.instructions).read_text()}
 """
 
+# ---- Helper Functions -------------------------------------------
+
+def read_input_content(file_path: Path) -> str:
+    """
+    Reads content from txt, csv, or json files and returns a string
+    formatted for the model prompt.
+    """
+    suffix = file_path.suffix.lower()
+
+    try:
+        # If JSON, load it and dump it
+        if suffix == ".json":
+            with file_path.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+            return json.dumps(data, indent=2)
+
+        # If CSV or TXT, read raw text
+        else:
+            return file_path.read_text(encoding="utf-8")
+
+    except Exception as e:
+        raise RuntimeError(f"Error reading input file '{file_path}': {e}")
+
+def parse_json_strict(text: str):
+    text = text.strip()
+
+    if not text:
+        raise RuntimeError("Model returned empty output")
+
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if not match:
+        raise RuntimeError(f"No JSON found in model output:\n{text}")
+
+    return json.loads(match.group(0))
+
 # ---- Real execution ---------------------------------------------
 
 log(f"Model loaded: {MODEL_NAME}")
@@ -199,28 +239,10 @@ model = AutoModelForImageTextToText.from_pretrained(
 model.eval()
 log("Model ready")
 
-def parse_json_strict(text: str):
-    text = text.strip()
-
-    if not text:
-        raise RuntimeError("Model returned empty output")
-
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        pass
-
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    if not match:
-        raise RuntimeError(f"No JSON found in model output:\n{text}")
-
-    return json.loads(match.group(0))
-
-
 def generate(
     *,
     instructions_text: str,
-    input_text: str,
+    context_text: str,
     input_filename: str,
     image=None
 ):
@@ -289,10 +311,13 @@ if args.input:
     if args.image:
         image = Image.open(args.image).convert("RGB")
 
+    # Use helper to read txt/csv/json
+    content_text = read_input_content(input_path)
+
     data = generate(
         instructions_text=instructions_text,
-        input_text=Path(args.input).read_text(),
-        input_filename=Path(args.input).name,
+        content_text=content_text,
+        input_filename=input_path.name,
         image=image
     )
 
@@ -315,13 +340,18 @@ else:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     image_dir = Path(args.image_dir) if args.image_dir else None
-    txt_files = sorted(input_dir.glob("*.txt"))
+    # Collect all supported file types
+    valid_extensions = {".txt", ".csv", ".json"}
+    context_files = sorted([
+        p for p in input_dir.iterdir()
+        if p.is_file() and p.suffix.lower() in valid_extensions
+    ])
 
-    total = len(txt_files)
-    log(f"Processing {total} files")
+    total = len(context_files)
+    log(f"Processing {total} files (found .txt, .csv, .json)")
 
-    for idx, txt_file in enumerate(txt_files, start=1):
-        log(f"→ {txt_file.name} ({idx}/{total})")
+    for idx, context_file in enumerate(context_files, start=1):
+        log(f"→ {context_file.name} ({idx}/{total})")
         image = None
 
         if image_dir:
@@ -333,8 +363,8 @@ else:
 
         data = generate(
             instructions_text=instructions_text,
-            input_text=txt_file.read_text(),
-            input_filename=txt_file.name,
+            input_text=context_file.read_text(),
+            input_filename=context_file.name,
             image=image
         )
 
