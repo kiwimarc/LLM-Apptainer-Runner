@@ -328,11 +328,11 @@ if args.input:
         image = Image.open(args.image).convert("RGB")
 
     # Use helper to read txt/csv/json
-    content_text = read_input_content(input_path)
+    context_text = read_input_content(input_path)
 
     data = generate(
         instructions_text=instructions_text,
-        content_text=content_text,
+        context_text=context_text,
         input_filename=input_path.name,
         image=image
     )
@@ -379,7 +379,7 @@ else:
 
         data = generate(
             instructions_text=instructions_text,
-            input_text=context_file.read_text(),
+            context_text=context_file.read_text(),
             input_filename=context_file.name,
             image=image
         )
