@@ -3,6 +3,10 @@ import json
 import sys
 import os
 from pathlib import Path
+from PIL import Image
+import torch
+import re
+from transformers import AutoProcessor, AutoModelForImageTextToText
 
 # ---- Config -----------------------------------------------------
 MODEL_NAME = "MedGemma 27B (BIG, multimodal)"
