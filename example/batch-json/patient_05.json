@@ -1,0 +1,63 @@
+[
+    {
+        "day": 5,
+        "consultation": 5,
+        "presenting_complaint": "My tummy hurts",
+        "note": "PC: Abdo pain\nHPC: 2/7 hx lower abdominal pain, central location. Has noticed some blood in the urine. Has check temp - 37. No back pain. Feels sweaty. More thirsty than normal, drinking well. No dysuria/freq. Constipated last week, now BO normally. No blood in stool. Last BO 2 hrs ago. No N&V, no dyspepsia. \n\nPMH : Nil \nDH: Nil. Allergic to amoxicillin.\nFMH: Mum had breast cancer, now in remission. \nSH: Lives with parents. Non smoker. No drugs. Drinks 1 beer x 4/week.\n\nImp: ? UTI.\nPlan: Advised 3/7 course Abx. Will pick up from pharmacy. To start asap. If develops temperature/persistent/worsening pain to call back or if recurrent similar sx. \n",
+        "highlights": [
+            "lower abdominal pain",
+            "blood in the urine",
+            "temp - 37",
+            "No back pain",
+            "thirsty"
+        ],
+        "_source_file": "day5_consultation05.json"
+    },
+    {
+        "day": 2,
+        "consultation": 5,
+        "presenting_complaint": "My asthma is not responding to my inhalers",
+        "note": "(the above consultation reason doesn't correlate with the patient's presentation)\nHx: episodes of unilateral right hand numbness/ pins and needles, with some right leg weakness and noticeable gait disturbances, ongoing for 1.5 months\noccurring with increasing frequency- initially once a week, now more often, occurring daily\n symptoms not present now\nno dysphagia, no dysphasia\nno Pmhx of CVA/TIA\nFather had CVA- appears to have had carotid endarterectomy\nNon smoker, normal blood tests for diabetes/ cholesterol when checked a few years ago\nPMHx and FH: otherwise nil of note\nDH PT IS TAKING Aspirin daily on his own accord due to his FH\nSH: pt is a medical doctor, plastic surgeon, lives with wife\nImp: TIAs- despite young age (need to exclude any systemic disease, eg antiphospholipid syndrome, that could be cause)\nPlan: needs to be seen urgently in TIA clinic- will fax referral now. Pt to contact them via PALS/ clinic no to ensure f/u\nIf any prolonged symptoms occur- to attend A/E\n",
+        "highlights": [
+            ""
+        ],
+        "_source_file": "day2_consultation05.json"
+    },
+    {
+        "day": 4,
+        "consultation": 5,
+        "presenting_complaint": "I've had bad diarrhea for 3 days",
+        "note": "PC; diarrhea and central abdominal pain for 3/7. Now unable to go to work due to frequency of bowel movements. No fevers\n\nHPC:\nDiarrhea +++ 5-6 per day (more) only fluid no blood, feels as if there incomplete evacuation.\n\n℅ abdominal pain for since presentation, no radiation, mild to moderate tenderness, and cramping, E+D'ing causing nausea. Feeling of “gas”\n\nSome vomiting, now unable to tolerate fluids and solids.  Ate this morning but vomited immediately. Feels and looks dehydrated.\n\nNo problems with breathing, no chest pain, no headache. \n\nDHx : NKDA. \n\nFHx : father has history of stomach Ca.\n\nDDx : gastroenteritis\n\nPlan: fluids, paracetamol, advised if symptoms do not improve to visit the gp surgery. \n",
+        "highlights": [
+            ""
+        ],
+        "_source_file": "day4_consultation05.json"
+    },
+    {
+        "day": 1,
+        "consultation": 5,
+        "presenting_complaint": "Lower abdominal pain",
+        "note": "2/7 ago developed lower abdo pain/suprapubic pain, gradual onset, burning pain, constant, progressively worsening\nNo bowel sx. \nUrinary sx - noticed some pink coloured urine, no frank haematuria, nil dysuria.  \nSome nausea, no vomiting\nFeeling hot and sweaty\nCurrently sexually active with regular partner. Last STD 6/12 ago. Unprotected SI 2/7 ago. \nLMP 2/52 ago \n\nNo chest pain/SOB/palpitations\nNo headches/visual sx\n\nPMH: nil\nPSH: nil \nDH: implanon , otherwise nil\nFH: nil \nSH: roomshare with 2 flatmates, works as an accountant. Nil smoking, social EtOH \n\nImp: ?UTI. also need to exclude pregnancy \n\nPlan:\n1.\tPregnancy test\n2.\tUrine dip and MSU\n3.\tRx empirically with Abx for UTI\n4.\tRegular paracetamol for pain \n5.\tReview in 24-48 hours if sx not improving, or earlier if worsening sx (fever, abdo pain, vomiting)\n",
+        "highlights": [
+            "abdo pain/suprapubic pain",
+            "burning",
+            "Feeling hot and sweaty",
+            "UTI",
+            "Abx"
+        ],
+        "_source_file": "day1_consultation05.json"
+    },
+    {
+        "day": 3,
+        "consultation": 5,
+        "presenting_complaint": "I've been feeling dizzy",
+        "note": "History : having dizziness for the past few hours \nYou had sometime similar a month ago but only lasted 10 minutes \nYou feel as though you are in a boat \nThere is no recent viral illness \nThere is a buzzing noise in your ears \nThere is no hearing problems \nNo ear discharge or ear pain \nYou feel nauseous but not been sick \nThere is no weakness of the arms and legs \nPast medical history #\nYou have premature ovarian failure and take HRT\nThere is no allergies \nPlan we will prescribe some stemitil for symptom relief . Most likely disgnosis is labrynthitis\nIf you will need to book a pace to face appointment to have your ears checked . If you develop any weakness of arms and legs, vomiting . Please go to A & E\n",
+        "highlights": [
+            "dizziness",
+            "premature ovarian failure",
+            "HRT",
+            "labrynthitis"
+        ],
+        "_source_file": "day3_consultation05.json"
+    }
+]

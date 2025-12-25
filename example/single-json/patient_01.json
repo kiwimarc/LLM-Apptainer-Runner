@@ -1,0 +1,67 @@
+[
+    {
+        "day": 2,
+        "consultation": 1,
+        "presenting_complaint": "I don't hear as well as I used to",
+        "note": "History: \nHx of difficulty hearing left ear for 6 weeks with tinnitus and slight nausea/ dizziness. \nOne previous similar episode in the past- resolved spontaneously.\nNo discharge/ fever/ itchiness/ pain\nDoesn't use cotton wool buds\nNo Pmhx of note\nEx: Looks well, not in pain.\nImp: need to exclude impacted wax in ear canal first\nPln: for face to face GP appointment in 5 days to examine ear\nPt to read about tinnitus in the meantime via following link: www.patient.co.uk/tinnitus\nIf any problems in interim to ring us back\nPt happy with and understands plan\n",
+        "highlights": [
+            "difficulty hearing",
+            "tinnitus",
+            "need to exclude impacted wax",
+            "examine ear"
+        ],
+        "_source_file": "day2_consultation01.json"
+    },
+    {
+        "day": 1,
+        "consultation": 1,
+        "presenting_complaint": "I've been having really bad diarrhea for the last 3 days",
+        "note": "3/7 hx of diarrhea, mainly watery. No blood in stool. Opening bowels x6/day. Associated LLQ pain - crampy, intermittent, nil radiation.  Also vomiting - mainly bilous. No blood in vomit. Fever on first day, nil since. Has been feeling lethargic and weak since. \n\nTakeaway 4/7 ago - Chinese restaurant. Wife and children also unwell with vomiting, but no diarrhea. No other unwell contacts. \n\nPMH: Asthma\nDH: Inhalers\nSH: works as an accountant. Lives with wife and children. Affecting his ADLs as has to be near toilet often. \nNil smoking/etOH hx\n\nImp: gastroenteritis \n\nPlan:\nConservative management - rest, push fluids, paracetamol if feverish. Recommend OTC diarolyte. To review in 3-5d if symptoms not improving. To see earlier if feeling more unwell. \n",
+        "highlights": [
+            "3/7 hx of diarrhea",
+            "LLQ pain",
+            "Fever",
+            "gastroenteritis",
+            "Conservative management"
+        ],
+        "_source_file": "day1_consultation01.json"
+    },
+    {
+        "day": 4,
+        "consultation": 1,
+        "presenting_complaint": "I'm having chest discomfort",
+        "note": "PC: acute onset left sided chest discomfort / pressure, feels like someone sitting on his chest 7/10, radiating to the left shoulder and arm.\n1-2 hours in duration, acute onset, 1st presentation started while gardening.\nNo radiation to the head. \n℅ nausea no vomiting since presentation\nSOBAR\n\nHPC. longer term hx of reduced ADLs due to SOBOE, walking up hills / stairs with no chest discomfort. \n\nPMHx - high cholesterol and high blood pressure. \n\n\nDHx - allergies aspirin.\n\nSHx - lives with wife at home, able to walk up stairs until previously\n\nDDx - MI, PE, GORD\n\nPlan - called ambulance ?? MI for further investigation and assessment.\n",
+        "highlights": [
+            ""
+        ],
+        "_source_file": "day4_consultation01.json"
+    },
+    {
+        "day": 3,
+        "consultation": 1,
+        "presenting_complaint": "lips swelling after eating a sandwich",
+        "note": "History: you are having lip swelling for the past 1 hr\nIt started after eating a prawn soup\nYou initially had some weird feeling around your lips \nThe swelling started after half an hour \nNow you are complaining of your throat closing \nYour chest is tight at the moment with difficulty breathing \nExamination : during the consultation, it looked like you were having some problems breathing and your lips appeared to be increasingly swelling\nPast medical history : you suffer from asthma \nYou have had an injection as a child for a peanut allergy \nMedication: you are currently on salbutamol inhalers \nTreatment: your Mom was around and I have advised that you use an antihistamine straight away. I have advised Mom to call the ambulance as a 999 call as we are suspecting an anaphylactic reaction\nAfter discharge from hospital please book a review with the doctor to consider prescribing an epipen\n",
+        "highlights": [
+            "lip swelling",
+            "asthma",
+            "peanut allergy",
+            "anaphylactic reaction"
+        ],
+        "_source_file": "day3_consultation01.json"
+    },
+    {
+        "day": 5,
+        "consultation": 1,
+        "presenting_complaint": "I have a headache",
+        "note": "Left sided headache since yesterday morning. Intermittent. Non positional. Not woken her up. No altered smell/taste.  E&D normally. No prodromal illness, no viral symptoms, sore ears/coryzal sx.  Doesn't feel feverish but hasn't checked temperature. No N&V. No tingling/numbness/weakness/rash. Worse with light but vision not altered. Taken paracetamol only. Period stopped last week.\nNo hx headaches.\nPMH: Nil significant\nDH: Microgynon - no SEs, BP was normal when checked for last prescription ? when.\nFH: Mother has hypertension and migraines.\nSH: Lives with flatmates, alcohol - few glasses wine at weekends, non smoker.\nSome stress at work recently. \nImp: ? Tension headache/first episode migraine. No features meningitic illness but is worse with light.\n Plan: Advised to get BP and temp checked and to call straight back if worsening/persistent headache/fever/rash/new symptoms. Advised to start regular ibuprofen with food. To have a review if regular headaches. \n",
+        "highlights": [
+            "Left sided headache",
+            "Intermittent",
+            "Non positional",
+            "Doesn't feel feverish",
+            "No tingling/numbness/weakness/rash",
+            "Worse with light but vision not altered"
+        ],
+        "_source_file": "day5_consultation01.json"
+    }
+]

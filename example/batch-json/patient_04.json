@@ -1,0 +1,62 @@
+[
+    {
+        "day": 1,
+        "consultation": 4,
+        "presenting_complaint": "I don't feel well, I have a cough and runny nose",
+        "note": "4/7 hx of generally unwell, mainly sore throat, runny nose, fatigue, myalgia and general joint pain. Sore throat is improving. Also has nasal congestion. Now developed a cough -mainly dry, constant. Night sweats for the past 4/7. Initially had fever, but now settling with paracetamol/ibuprofen. \nNo chest pain. Feels more SOB on exertion. \nAssociated headaches - generalized, intermittent. No visual sx/photophobia. No nausea/vomiting. No bowel or urinary sx. Drinking fluids, reduced appetite. No rashes\n\nPMH: Nil \nDH: nil \nNKDA\nFH: Grandmother - type 2 diabetes\nSH: lives alone, works as an accountant. Occasional smoker/etOH. Finding work slightly stressful. No mood sx. \n\nImp: viral URTI/influenza \n\nPlan:\n1.\tConservative mx - rest, push fluids, regular paracetamol/ibuprofen, monitor temp\n2.\tReview in 5-7d INB\n3.\tDiscussed red flag sx (SOB, chest pain, fevers)- if present, for urgent review with Dr \n",
+        "highlights": [
+            "sore throat",
+            "fatigue",
+            "myalgia",
+            "cough",
+            "viral URTI/influenza"
+        ],
+        "_source_file": "day1_consultation04.json"
+    },
+    {
+        "day": 2,
+        "consultation": 4,
+        "presenting_complaint": "I feel breathless",
+        "note": "1 day hx of SOB, slight pleuritic pain (right side), feeling warm (not measured temperature), 2 episodes haemoptysis and palpitations.\nNo recent long haul flights\nNo FH or PMHx of DVT/Pes\nHas been feeling TATT/ fatigue for the last few weeks preceding these symptoms\nPmhx: SLE\nDH: on methotrexate\nNo allergies\nSH lives alone, has cat, works in an office\nEx: pulse around 66, normal CRT, throat inspection normal, pt cant feel any LNs in neck, not SOB, looks well\nImp: probable LRTI, possibly secondary to immunosuppression\nPlan: needs F2f gp assessment today to listen to chest and check BP/pulse/ temp\nMay also need blood tests to check immune status in view of methotrexate\n",
+        "highlights": [
+            ""
+        ],
+        "_source_file": "day2_consultation04.json"
+    },
+    {
+        "day": 5,
+        "consultation": 4,
+        "presenting_complaint": "Lower stomach pain",
+        "note": "PC: Abdominal pain. HPC: Periumbilical pain, constant getting worse. Severity 8/10. Has had some light PV bleeding. No dysuria/frequency but some difficulty PUing. BO daily, normal stool. Constipation for a week last week. LMP 2 weeks ago. No other PV discharge. E&D ok. Not checked temp. Does not feel feverish. Not feeling faint. No DIB/shoulder tip pain. Nausea. No vomiting/diarrhoea. Last foreign travel 1 yr ago. \nImplanon 1 yr ago. \nPMH: Nil significant\nDH: Nil. Allergic to amoxicillin\nSH; Teacher, has been able to work as usual. Lives with parents. No smoker/alcohol/drugs.\nImp: Abdominal pain ? cause. Needs to check preg test today and contact us immediately if pos. Urgent examination booked with Dr. To get in touch before if pain worse/new sx. \n",
+        "highlights": [
+            "Periumbilical pain",
+            "light PV bleeding",
+            "difficulty PUing",
+            "LMP 2 weeks ago"
+        ],
+        "_source_file": "day5_consultation04.json"
+    },
+    {
+        "day": 4,
+        "consultation": 4,
+        "presenting_complaint": "I'm wheezy",
+        "note": "PC : sobar pmhx of childhood asthma and hayfever.\n\nHPC. 2 day history of wheezing and SOBAR, after cleaning dusty environment\nNo chest pain. No nausea,no vomiting, no problems e+d\nSOB worse at night\nNow having problems speaking in full sentences\n\n\nPMH: As above.\n\nDhx : allergy nils no regular medications. \n\nDDx : acute exacerbation of asthma, ?? allergy\n\nPlan : antihistamine and further examination and investigation. \n",
+        "highlights": [
+            ""
+        ],
+        "_source_file": "day4_consultation04.json"
+    },
+    {
+        "day": 3,
+        "consultation": 4,
+        "presenting_complaint": "my chest feels very tight",
+        "note": "History: Having breathlessness for 3-4 days \nHaving to use the blue inhalers twice a day \nYou normally use it only as and when \nYou are also on the clenil and taking it everyday 2 puff twice a day \nYou are having a cough but no sputum \nThere is some wheezing \nMedical history : you had asthma since your childhood\nYou suffer from eczema . your last asthma attack was 3 years ago \nYou have never needed anitibiotics or steroids \nYou have never been hospitalized because of your asthma \nYour normal peak flow reading is 380\nYou don't have any allergies \nMedication : you also use hydrocortisone and cetraban for eczema\nPlan : you have been advised to increase you brown inhaler to 4 puffs twice daily and can use the blue inhalers upto every 2-4 hrs \nYou will need your chest reviewed by a doctor in the next 2 days \nIf you were to get increasingly breathless with the treatment that has been advised and not seen a doctor yet, please go to A & E\n",
+        "highlights": [
+            "breathlessness",
+            "asthma",
+            "eczema",
+            "peak flow reading is 380"
+        ],
+        "_source_file": "day3_consultation04.json"
+    }
+]
