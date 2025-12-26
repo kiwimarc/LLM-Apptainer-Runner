@@ -370,7 +370,7 @@ else:
 
         if image_dir:
             for ext in (".png", ".jpg", ".jpeg", ".webp"):
-                img_path = image_dir / f"{txt_file.stem}{ext}"
+                img_path = image_dir / f"{context_file.stem}{ext}"
                 if img_path.exists():
                     image = Image.open(img_path).convert("RGB")
                     break
@@ -382,7 +382,7 @@ else:
             image=image
         )
 
-        output_file = output_dir / f"{txt_file.stem}.json"
+        output_file = output_dir / f"{context_file.stem}.json"
         try:
             with output_file.open("w") as f:
                 json.dump(data, f, indent=2)
