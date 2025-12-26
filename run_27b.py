@@ -273,7 +273,7 @@ def generate(
         {
             "role": "user",
             "content": (
-                [{"type": "text", "text": input_text}] +
+                [{"type": "text", "text": context_text}] +
                 ([{"type": "image", "image": image}] if image is not None else [])
             )
         }
