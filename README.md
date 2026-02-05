@@ -192,8 +192,8 @@ If valid JSON cannot be produced:
 
 | Model | VRAM Required | Notes |
 |-------|---------------|-------|
-| MedGemma 4B | ≥ ... GB | Text + Image support |
-| MedGemma 27B | ≥ ... GB | Text + Image support |
+| MedGemma 4B | ≥ 10 GB | Text + Image support |
+| MedGemma 27B | ≥ 60 GB | Text + Image support |
 | LLaMA 3.3 70B | ≥ 140 GB | Text only|
 | GPT-OSS 120B | ≥ 80 GB | Text only |
 
