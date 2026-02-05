@@ -1,12 +1,15 @@
-# MedGemma Apptainer Runner
+# LLM Apptainer Runner
 
-This project provides **offline, GPU-enabled Apptainer containers** for running **MedGemma** models with **strict JSON-only output**, designed for **HPC, Apptainer**.
+This project provides **offline, GPU-enabled Apptainer containers** for running multiple **LLM models** with **strict JSON-only output**, designed for **HPC and Apptainer environments**.
 
-Two models are supported:
+## Supported Models
 
-* [**medgemma-4b**](https://huggingface.co/google/medgemma-4b-it) – Multimodal (text + image)
-* [**medgemma-27b**](https://huggingface.co/google/medgemma-27b-it) – Multimodal (text + image)
-
+| Model | Size | Modality | Container |
+|-------|------|----------|-----------|
+| [**MedGemma 4B**](https://huggingface.co/google/medgemma-4b-it) | 4B | Text + Image | `medgemma-4b. sif` |
+| [**MedGemma 27B**](https://huggingface.co/google/medgemma-27b-it) | 27B | Text + Image | `medgemma-27b.sif` |
+| [**LLaMA 3. 3 70B Instruct**](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) | 70B | Text only | `llama3-70b. sif` |
+| [**GPT-OSS 120B**](https://huggingface.co/openai/gpt-oss-120b) | 120B | Text only | `gpt-oss-120b.sif` |
 
 ---
 
@@ -14,19 +17,35 @@ Two models are supported:
 
 * ✅ Strict JSON-only output (machine-safe)
 * ✅ Single-file and batch processing
-* ✅ Optional image input
+* ✅ Optional image input (MedGemma models)
 * ✅ Offline execution (models embedded)
 * ✅ Dry-run and debug modes
 * ✅ HPC / Apptainer compatible
+* ✅ Multi-model support
 
 ---
 
-## Container Files
+## Building Containers
 
-| Model        | Container          |
-| ------------ | ------------------ |
-| MedGemma 4B  | `medgemma-4b.sif`  |
-| MedGemma 27B | `medgemma-27b.sif` |
+### Prerequisites
+
+```bash
+# Required tools
+git
+git-lfs
+apptainer
+```
+
+### Build All Models
+
+```bash
+./build. sh
+```
+
+This will: 
+1. Clone all model repositories from Hugging Face
+2. Build Apptainer containers for each model
+3. Generate `.sif` files ready to run
 
 ---
 
@@ -46,22 +65,21 @@ Always enable GPU:
 
 ---
 
-
 ## Single-file Processing
 
 ### Text-only
 
 ```bash
-apptainer run --nv --bind $PWD:$PWD {MODEL} \
+apptainer run --nv --bind $PWD: $PWD {MODEL}. sif \
   --instructions instructions.txt \
   --input report.txt \
   --output result.json
 ```
 
-### Text + Image 
+### Text + Image (MedGemma only)
 
 ```bash
-apptainer run --nv --bind $PWD:$PWD {MODEL} \
+apptainer run --nv --bind $PWD:$PWD {MODEL}.sif \
   --instructions instructions.txt \
   --input report.txt \
   --image xray.png \
@@ -70,19 +88,18 @@ apptainer run --nv --bind $PWD:$PWD {MODEL} \
 
 ---
 
-
 ## Batch Processing
 
 ### Text-only batch
 
 ```bash
-apptainer run --nv --bind $PWD:$PWD {MODEL} \
+apptainer run --nv --bind $PWD:$PWD {MODEL}.sif \
   --instructions instructions.txt \
   --input-dir inputs/ \
   --output-dir outputs/
 ```
 
-### Batch with images
+### Batch with images (MedGemma only)
 
 Image filenames must match text files:
 
@@ -91,7 +108,7 @@ report1.txt -> report1.png
 ```
 
 ```bash
-apptainer run --nv --bind $PWD:$PWD {MODEL} \
+apptainer run --nv --bind $PWD:$PWD {MODEL}.sif \
   --instructions instructions.txt \
   --input-dir reports/ \
   --image-dir images/ \
@@ -106,14 +123,15 @@ Each container exposes a full help menu:
 
 ```bash
 apptainer run medgemma-4b.sif --help
-apptainer run medgemma-27b.sif --help
+apptainer run llama3-70b.sif --help
+apptainer run gpt-oss-120b.sif --help
 ```
 
-This shows:
+This shows: 
 
 * Required flags
 * Single vs batch usage
-* Image support
+* Image support (if applicable)
 * Output schema
 * Debug and dry-run options
 
@@ -124,7 +142,7 @@ This shows:
 Preview what will happen **without loading the model**:
 
 ```bash
-apptainer run medgemma-4b.sif \
+apptainer run llama3-70b.sif \
   --instructions instructions.txt \
   --input report.txt \
   --output result.json \
@@ -138,7 +156,7 @@ apptainer run medgemma-4b.sif \
 Print raw model output before JSON parsing:
 
 ```bash
-apptainer run --nv --bind $PWD:$PWD medgemma-4b.sif \
+apptainer run --nv --bind $PWD: $PWD gpt-oss-120b. sif \
   --instructions instructions.txt \
   --input report.txt \
   --output result.json \
@@ -151,8 +169,7 @@ Useful if the model returns invalid or empty JSON.
 
 ## Output Format
 
-All outputs are **guaranteed JSON** with this schema, enforced by the system prompt in `run_*.py`:
-
+All outputs are **JSON** with this schema:
 
 ```json
 {
@@ -163,7 +180,7 @@ All outputs are **guaranteed JSON** with this schema, enforced by the system pro
 }
 ```
 
-If valid JSON cannot be produced:
+If valid JSON cannot be produced: 
 
 * The run fails
 * No output file is written
@@ -173,29 +190,28 @@ If valid JSON cannot be produced:
 
 ## Hardware Requirements
 
-### MedGemma 4B
-
-* GPU recommended (≥ 8 GB VRAM)
-* Text + image support
-
-### MedGemma 27B
-
-* GPU required (≥ 48 GB VRAM)
-* Text + image support
+| Model | VRAM Required | Notes |
+|-------|---------------|-------|
+| MedGemma 4B | ≥ ... GB | Text + Image support |
+| MedGemma 27B | ≥ ... GB | Text + Image support |
+| LLaMA 3.3 70B | ≥ 140 GB | Text only|
+| GPT-OSS 120B | ≥ 80 GB | Text only |
 
 ---
 
-## Models Folder
+## Models Folder Structure
 
 Models must exist locally before building containers:
 
 ```
 models/
 ├── medgemma-4b-it/
-└── medgemma-27b-it/
+├── medgemma-27b-it/
+├── Llama-3.3-70B-Instruct/
+└── gpt-oss-120b/
 ```
 
-These are cloned using `git clone` with Git LFS.
+These are cloned automatically by `build.sh` using Git LFS.
 
 ---
 
@@ -209,11 +225,11 @@ examples/
 └── batch-image/
 ```
 
-Each example includes:
+Each example includes: 
 
 * Instructions file
 * Input text(s)
-* Optional images
+* Optional images (for MedGemma)
 
 ---
 
@@ -221,9 +237,28 @@ Each example includes:
 
 * Internet access is **not required at runtime**
 * First build requires Hugging Face access
+* MedGemma requires accepting Health AI Developer Foundation's terms of use
+* LLaMA 3.3 requires accepting Llama3.3 Community License Agreement
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.  See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Model-Specific Notes
+
+### MedGemma (4B, 27B)
+- Medical domain fine-tuned
+- Supports multimodal input (text + images)
+- Optimized for clinical/medical tasks
+
+### LLaMA 3.3 70B Instruct
+- General-purpose
+- Text-only
+
+### GPT-OSS 120B
+- General-purpose model
+- Text-only
