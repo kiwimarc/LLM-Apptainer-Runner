@@ -253,7 +253,6 @@ This project is licensed under the MIT License.  See the [LICENSE](LICENSE) file
 ### MedGemma (4B, 27B)
 - Medical domain fine-tuned
 - Supports multimodal input (text + images)
-- Optimized for clinical/medical tasks
 
 ### LLaMA 3.3 70B Instruct
 - General-purpose
