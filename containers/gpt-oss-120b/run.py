@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import torch
 import re
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoProcessor, AutoModelForImageTextToText, set_seed
 
 # ---- Config -----------------------------------------------------
 MODEL_NAME = "GPT-OSS 120B"
@@ -80,6 +80,13 @@ Single-file mode:
 Batch mode:
 --output-dir DIR
 
+OPTIONAL ARGUMENTS
+------------------
+
+--seed INT
+    Set a seed to ensure deterministic/reproducible outputs.
+    Example: --seed 42
+
 MODEL BEHAVIOR
 --------------
 
@@ -128,6 +135,7 @@ parser.add_argument("--output")
 parser.add_argument("--output-dir")
 parser.add_argument("--dry-run", action="store_true")
 parser.add_argument("--debug", action="store_true")
+parser.add_argument("--seed")
 
 args = parser.parse_args()
 
@@ -139,6 +147,16 @@ if args.input and not args.output:
     sys.exit("ERROR:  --output is required in single-file mode")
 if args.input_dir and not args.output_dir:
     sys.exit("ERROR: --output-dir is required in batch mode")
+    
+if args.seed is not None:
+    set_seed(int(args.seed))
+    log(f"Seed set to: {args.seed}")
+try:
+    seed = int(args.seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+except:
+    sys.exit("ERROR: 'seed' should be a valid integer number")
 
 # ---- Helper Functions -------------------------------------------
 

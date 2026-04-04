@@ -20,6 +20,8 @@ This project provides **offline, GPU-enabled Apptainer containers** for running 
 * ✅ Optional image input (MedGemma models)
 * ✅ Offline execution (models embedded)
 * ✅ Dry-run and debug modes
+* ✅ Reproducible outputs via custom seed
+* ✅ Override default run script with custom Python scripts
 * ✅ HPC / Apptainer compatible
 * ✅ Multi-model support
 
@@ -61,6 +63,18 @@ Always enable GPU:
 
 ```bash
 --nv
+```
+
+## Set seed for reproducibility
+
+To ensure your outputs are deterministic and reproducible across runs, pass the --seed argument followed by an integer.
+
+```bash
+apptainer run --nv --bind $PWD:$PWD {MODEL}.sif \
+  --instructions instructions.txt \
+  --input report.txt \
+  --output result.json \
+  --seed 42
 ```
 
 ---
@@ -116,6 +130,17 @@ apptainer run --nv --bind $PWD:$PWD {MODEL}.sif \
 ```
 
 ---
+
+## Custom Run Script
+
+You can override the container's built-in run.py execution logic by passing your own Python script as the first argument after the .sif file. This allows you to modify prompting logic, chunking behavior, or JSON parsing without rebuilding the container.
+
+```bash
+apptainer run --nv --bind $PWD:$PWD {MODEL}.sif custom_script.py \
+  --instructions instructions.txt \
+  --input report.txt \
+  --output result.json
+```
 
 ## Help Menu
 

@@ -41,4 +41,16 @@ From: nvidia/cuda:12.4.1-runtime-ubuntu22.04
     ./containers/medgemma-27b/run.py /opt/run.py
 
 %runscript
+    # Check if the first argument exists, is a file, and ends in .py
+    if [ $# -gt 0 ] && [ -f "$1" ]; then
+        case "$1" in
+            *.py)
+                CUSTOM_SCRIPT="$1"
+                shift # Remove the script name from the arguments list
+                exec python3 "$CUSTOM_SCRIPT" "$@"
+                ;;
+        esac
+    fi
+
+    # If it wasn't a custom .py script, fall back to the internal run.py
     exec python3 /opt/run.py "$@"

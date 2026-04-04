@@ -6,7 +6,7 @@ from pathlib import Path
 from PIL import Image
 import torch
 import re
-from transformers import AutoProcessor, AutoModelForImageTextToText
+from transformers import AutoProcessor, AutoModelForImageTextToText, set_seed
 
 # ---- CONFIG -------------------------------------------------
 
@@ -79,6 +79,13 @@ Single-file mode:
 Batch mode:
 --output-dir DIR
 
+OPTIONAL ARGUMENTS
+------------------
+
+--seed INT
+    Set a seed to ensure deterministic/reproducible outputs.
+    Example: --seed 42
+
 MODEL BEHAVIOR
 --------------
 
@@ -140,6 +147,7 @@ parser.add_argument("--image")
 parser.add_argument("--image-dir")
 parser.add_argument("--dry-run", action="store_true")
 parser.add_argument("--debug", action="store_true")
+parser.add_argument("--seed")
 
 args = parser.parse_args()
 
@@ -153,6 +161,16 @@ if args.input and not args.output:
 
 if args.input_dir and not args.output_dir:
     sys.exit("ERROR: --output-dir is required in batch mode")
+    
+if args.seed is not None:
+    set_seed(int(args.seed))
+    log(f"Seed set to: {args.seed}")
+try:
+    seed = int(args.seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+except:
+    sys.exit("ERROR: 'seed' should be a valid integer number")
 
 # ---- Dry run ----------------------------------------------------
 
