@@ -178,7 +178,7 @@ def parse_json_strict(text: str):
 
     # Try raw parse
     try:
-        return json. loads(text)
+        return json.loads(text)
     except json.JSONDecodeError:
         pass
 
