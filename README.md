@@ -6,10 +6,11 @@ This project provides **offline, GPU-enabled Apptainer containers** for running 
 
 | Model | Size | Modality | Container |
 |-------|------|----------|-----------|
-| [**MedGemma 4B**](https://huggingface.co/google/medgemma-4b-it) | 4B | Text + Image | `medgemma-4b. sif` |
+| [**MedGemma 4B**](https://huggingface.co/google/medgemma-4b-it) | 4B | Text + Image | `medgemma-4b.sif` |
 | [**MedGemma 27B**](https://huggingface.co/google/medgemma-27b-it) | 27B | Text + Image | `medgemma-27b.sif` |
-| [**LLaMA 3. 3 70B Instruct**](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) | 70B | Text only | `llama3-70b. sif` |
+| [**LLaMA 3. 3 70B Instruct**](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) | 70B | Text only | `llama3-70b.sif` |
 | [**GPT-OSS 120B**](https://huggingface.co/openai/gpt-oss-120b) | 120B | Text only | `gpt-oss-120b.sif` |
+| [**Gemma4 31B**](https://huggingface.co/google/gemma-4-31B-it) | 31B | Text + Image | `gemma4-31b.sif` |
 
 ---
 
@@ -221,6 +222,7 @@ If valid JSON cannot be produced:
 | MedGemma 27B | ≥ 60 GB | Text + Image support |
 | LLaMA 3.3 70B | ≥ 140 GB | Text only|
 | GPT-OSS 120B | ≥ 80 GB | Text only |
+| Gemma4 31B | ≥ 60 GB | Text Image support |
 
 ---
 
@@ -233,7 +235,8 @@ models/
 ├── medgemma-4b-it/
 ├── medgemma-27b-it/
 ├── Llama-3.3-70B-Instruct/
-└── gpt-oss-120b/
+├── gpt-oss-120b/
+└── gemma4-31b/
 ```
 
 These are cloned automatically by `build.sh` using Git LFS.
@@ -286,3 +289,7 @@ This project is licensed under the MIT License.  See the [LICENSE](LICENSE) file
 ### GPT-OSS 120B
 - General-purpose model
 - Text-only
+
+### Gemma4 31B
+- General-purpose
+- Supports multimodal input (text + images)

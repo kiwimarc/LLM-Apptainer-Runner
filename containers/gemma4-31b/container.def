@@ -1,0 +1,56 @@
+Bootstrap: docker
+From: nvidia/cuda:12.4.1-runtime-ubuntu22.04
+
+%labels
+    Author Marc Cummings
+    Version 1.0
+    Model Gemma4 31B
+    Type Multimodal
+    Build for H100 (sm_90) - FlashAttn v2.8.3
+
+%environment
+    export MODEL_PATH=/opt/models/gemma4-31b
+    export PYTHONUNBUFFERED=1
+    export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+%post
+    # Basic utilities
+    apt-get update && apt-get install -y \
+        python3 python3-pip git curl wget vim \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Install Python dependencies
+    pip3 install --upgrade pip
+
+    # Install PyTorch
+    pip3 install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+
+    # Install Flash Attention via PRE-BUILT WHEEL
+    # Target: CUDA 12 | Torch 2.6 | Python 3.10 
+    pip3 install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+
+    # Install other dependencies
+    pip3 install transformers pillow accelerate sentencepiece
+
+    # Create model directory
+    mkdir -p /opt/models/
+
+%files
+    # Copy downloaded Gemma4 31B model into the container
+    ./models/gemma4-31b /opt/models/gemma4-31b
+    ./containers/gemma4-31b/run.py /opt/run.py
+
+%runscript
+    # Check if the first argument exists, is a file, and ends in .py
+    if [ $# -gt 0 ] && [ -f "$1" ]; then
+        case "$1" in
+            *.py)
+                CUSTOM_SCRIPT="$1"
+                shift # Remove the script name from the arguments list
+                exec python3 "$CUSTOM_SCRIPT" "$@"
+                ;;
+        esac
+    fi
+
+    # If it wasn't a custom .py script, fall back to the internal run.py
+    exec python3 /opt/run.py "$@"

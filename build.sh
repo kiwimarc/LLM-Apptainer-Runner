@@ -13,6 +13,7 @@ declare -A MODEL_REPOS=(
   ["medgemma-27b"]="https://huggingface.co/google/medgemma-27b-it"
   ["llama3-70b"]="https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
   ["gpt-oss-120b"]="https://huggingface.co/openai/gpt-oss-120b"
+  ["gemma4-31b"]="https://huggingface.co/google/gemma-4-31B-it"
 )
 
 declare -A MODEL_DIRS=(
@@ -20,6 +21,7 @@ declare -A MODEL_DIRS=(
   ["medgemma-27b"]="${MODELS_DIR}/medgemma-27b-it"
   ["llama3-70b"]="${MODELS_DIR}/Llama-3.3-70B-Instruct"
   ["gpt-oss-120b"]="${MODELS_DIR}/gpt-oss-120b"
+  ["gemma4-31b"]="${MODELS_DIR}/gemma4-31b"
 )
 
 declare -A MODEL_NAMES=(
@@ -27,6 +29,7 @@ declare -A MODEL_NAMES=(
   ["medgemma-27b"]="MedGemma 27B"
   ["llama3-70b"]="LLaMA 3.3 70B"
   ["gpt-oss-120b"]="GPT-OSS 120B"
+  ["gemma4-31b"]="Gemma4 31B"
 )
 
 declare -A MODEL_VRAM=(
@@ -34,6 +37,7 @@ declare -A MODEL_VRAM=(
   ["medgemma-27b"]="≥60GB VRAM"
   ["llama3-70b"]="≥140GB VRAM"
   ["gpt-oss-120b"]="≥80GB VRAM"
+  ["gemma4-31b"]="≥60GB VRAM"
 )
 
 # ================================
@@ -82,13 +86,14 @@ echo "  1) ${MODEL_NAMES[medgemma-4b]}      (Text+Image, ${MODEL_VRAM[medgemma-4
 echo "  2) ${MODEL_NAMES[medgemma-27b]}     (Text+Image, ${MODEL_VRAM[medgemma-27b]})"
 echo "  3) ${MODEL_NAMES[llama3-70b]}    (Text only, ${MODEL_VRAM[llama3-70b]})"
 echo "  4) ${MODEL_NAMES[gpt-oss-120b]}     (Text only, ${MODEL_VRAM[gpt-oss-120b]})"
-echo "  5) Build ALL models"
+echo "  5) ${MODEL_NAMES[gemma4-31b]}       (Text+Image, ${MODEL_VRAM[gemma4-31b]})"
+echo "  6) Build ALL models"
 echo ""
-read -p "Select models to build (e.g., '1 3' or '5' for all): " selection
+read -p "Select models to build (e.g., '1 3' or '6' for all): " selection
 
 # Parse selection
 declare -A BUILD_FLAGS
-for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b; do
+for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b gemma4-31b; do
   BUILD_FLAGS[$model]=false
 done
 
@@ -98,8 +103,9 @@ for choice in $selection; do
     2) BUILD_FLAGS[medgemma-27b]=true ;;
     3) BUILD_FLAGS[llama3-70b]=true ;;
     4) BUILD_FLAGS[gpt-oss-120b]=true ;;
-    5)
-      for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b; do
+    5) BUILD_FLAGS[gemma4-31b]=true ;;
+    6)
+      for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b gemma4-31b; do
         BUILD_FLAGS[$model]=true
       done
       ;;
@@ -115,7 +121,7 @@ echo ""
 echo "================================"
 echo "Selected models:"
 echo "================================"
-for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b; do
+for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b gemma4-31b; do
   if ${BUILD_FLAGS[$model]}; then
     echo "${MODEL_NAMES[$model]}"
   fi
@@ -137,7 +143,7 @@ echo "================================"
 echo "Cloning and Pruning repositories..."
 echo "================================"
 
-for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b; do
+for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b gemma4-31b; do
   if ${BUILD_FLAGS[$model]}; then
     model_dir="${MODEL_DIRS[$model]}"
     model_repo="${MODEL_REPOS[$model]}"
@@ -146,9 +152,8 @@ for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b; do
     if [ ! -d "${model_dir}" ]; then
       echo ""
       echo "Cloning ${MODEL_NAMES[$model]}..."
-      git clone "${model_repo}" "${model_dir}"
+      GIT_LFS_SKIP_SMUDGE=1 git clone "${model_repo}" "${model_dir}"
       (cd "${model_dir}" && git lfs pull)
-      echo "${MODEL_NAMES[$model]} cloned successfully."
     else
       echo "${MODEL_NAMES[$model]} already present, skipping clone."
     fi
@@ -198,7 +203,7 @@ echo "================================"
 
 BUILT_IMAGES=()
 
-for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b; do
+for model in medgemma-4b medgemma-27b llama3-70b gpt-oss-120b gemma4-31b; do
   if ${BUILD_FLAGS[$model]}; then
     echo ""
     echo "Building ${model}.sif..."
